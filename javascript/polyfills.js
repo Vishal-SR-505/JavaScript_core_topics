@@ -69,3 +69,27 @@ let output = arr.myRedue((acc,curr,i,arr)=>{
 , 0)
 
 console.log("output :: ", output);
+
+
+
+let obj = {
+    name:"vishal",
+}
+
+
+function sampleFn(role){
+    console.log(`Iam ${this.name} my role is ${role}`)
+}
+
+
+Function.prototype.myCall = function(context = {},...args){
+    // if(typeof this !== "function"){
+    //     throw new Error(this + "It's not a function");
+    // }
+
+    context.fn = this;
+    console.log(context)
+    context.fn(...args)
+}
+
+sampleFn.myCall(obj,"dev");
