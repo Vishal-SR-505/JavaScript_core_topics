@@ -93,3 +93,29 @@ Function.prototype.myCall = function(context = {},...args){
 }
 
 sampleFn.myCall(obj,"dev");
+
+
+
+let obj = {
+    name: "vishal",
+}
+
+function sampleFn(role) {
+    console.log(`Iam ${this.name} my role is ${role}`)
+}
+
+Function.prototype.myBind = function(context={}, ...args) {
+    // if(typeof this !== "function"){
+    //     throw new Error(this + "It's not a function");
+    // }
+    // if(!Array.isArray(args)){
+    //     throw new Error(this + "argument is not an array");
+    // }
+    context.fn = this;
+    return function(...newArgs) {
+        return context.fn(...args, ...newArgs);
+    }
+}
+
+let newFunction = sampleFn.myBind(obj);
+newFunction("dev");
