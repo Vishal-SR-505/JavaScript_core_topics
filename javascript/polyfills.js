@@ -46,3 +46,26 @@ let output = arr.myfilter((ele,index,arr)=>{
 })
 
 console.log("output :: ",output);
+
+
+// reduce() polyfills
+
+const arr = [1, 2, 3, 4];
+
+Array.prototype.myRedue = function(cb, initialValue) {
+    let accumulator = initialValue;
+
+    for (let i = 0; i < this.length; i++) {
+        accumulator = accumulator ? cb(accumulator, this[i], i, this) : this[i];
+    }
+    return accumulator;
+
+}
+
+let output = arr.myRedue((acc,curr,i,arr)=>{
+
+    return acc + curr;
+}
+, 0)
+
+console.log("output :: ", output);
